@@ -1,3 +1,3 @@
-# my_flutter_app
+# flutter_rust
 
-A new Flutter project.
+A demo project showcasing bridge between flutter and rust

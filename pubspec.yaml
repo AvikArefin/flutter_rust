@@ -1,5 +1,5 @@
-name: my_flutter_app
-description: "A new Flutter project."
+name: flutter_rust
+description: "Example Project Showcasing Flutter and Rust Bridge."
 publish_to: 'none'
 version: 0.1.0+1
 

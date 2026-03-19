@@ -4,10 +4,16 @@ import 'package:flutter/material.dart';
 
 // 1. Define the Native bindings
 // The 'asset' name here must match what you put in hook/build.dart
-@Native<Pointer<Utf8> Function()>(symbol: 'generate_ulid_string', assetId: 'package:my_flutter_app/my_flutter_app',)
+@Native<Pointer<Utf8> Function()>(
+  symbol: 'generate_ulid_string',
+  assetId: 'package:flutter_rust/flutter_rust',
+)
 external Pointer<Utf8> _generate();
 
-@Native<Void Function(Pointer<Utf8>)>(symbol: 'free_ulid_string', assetId: 'package:my_flutter_app/my_flutter_app',)
+@Native<Void Function(Pointer<Utf8>)>(
+  symbol: 'free_ulid_string',
+  assetId: 'package:flutter_rust/flutter_rust',
+)
 external void _free(Pointer<Utf8> ptr);
 
 // 2. The Logic Wrapper
@@ -19,10 +25,9 @@ String getNewUlid() {
 }
 
 void main() {
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: RustUlidApp(),
-  ));
+  runApp(
+    const MaterialApp(debugShowCheckedModeBanner: false, home: RustUlidApp()),
+  );
 }
 
 class RustUlidApp extends StatefulWidget {
@@ -56,7 +61,10 @@ class _RustUlidAppState extends State<RustUlidApp> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            const Text("Latest ULID from Rust:", style: TextStyle(color: Colors.grey)),
+            const Text(
+              "Latest ULID from Rust:",
+              style: TextStyle(color: Colors.grey),
+            ),
             const SizedBox(height: 10),
             SelectableText(
               _ulid,
@@ -72,13 +80,19 @@ class _RustUlidAppState extends State<RustUlidApp> {
               icon: const Icon(Icons.bolt),
               label: const Text("Generate in Rust"),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 15,
+                ),
               ),
             ),
             const Divider(height: 50),
             const Align(
               alignment: Alignment.centerLeft,
-              child: Text("History:", style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Text(
+                "History:",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             Expanded(
               child: ListView.builder(
@@ -86,7 +100,10 @@ class _RustUlidAppState extends State<RustUlidApp> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: const Icon(Icons.history, size: 16),
-                    title: Text(_history[index], style: const TextStyle(fontFamily: 'Courier')),
+                    title: Text(
+                      _history[index],
+                      style: const TextStyle(fontFamily: 'Courier'),
+                    ),
                   );
                 },
               ),
